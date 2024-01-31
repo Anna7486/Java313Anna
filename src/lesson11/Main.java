@@ -284,6 +284,7 @@ public class Main {
         System.out.println(0b101 >> 1);
         System.out.println(5 >> 2);*/
 
+        System.out.println("Проверка изменений на GitHub");
 
 
 
