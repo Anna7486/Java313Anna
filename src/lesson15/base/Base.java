@@ -8,6 +8,11 @@ public class Base {
         geom[1] = new Rectangle(2,"yellow", 20);
         geom[2] = new Triangle(3,"yellow", 10);
 
+        ShapeInterface sh[] = new ShapeInterface[N];
+        sh[0] = new Line(5,"red", 1,2,3,4);
+        sh[1] = new Rectangle(2,"yellow", 20);
+        sh[2] = new Triangle(3,"yellow", 10);
+
 //        for (Shape g : geom) {
 //            g.draw();
 //            g.getSquare();
@@ -18,8 +23,14 @@ public class Base {
                 double s = ((MathShape) geom[i]).getSquare();
                 System.out.println("Площадь: " + s);
             }
+
+            sh[i].info();
         }
     }
+}
+
+interface ShapeInterface{
+    void info();
 }
 interface MathShape{
     double getSquare();
@@ -41,7 +52,7 @@ abstract class Shape{
     abstract void draw();
 }
 
-class Line extends Shape{
+class Line extends Shape implements ShapeInterface{
     private int x1, x2, y1, y2;
 
     public Line(int width, String color, int x1, int x2, int y1, int y2) {
@@ -56,9 +67,13 @@ class Line extends Shape{
     void draw() {
         System.out.println("Рисование линии");
     }
+
+    public void info(){
+        System.out.println("Координаты линии: " + this.x1 + " " + this.x2 + " " + this.y1 + " " + this.y2 + "\n");
+    }
 }
 
-class  Rectangle extends Shape implements MathShape{
+class  Rectangle extends Shape implements ShapeInterface{
     private int height;
 
     public Rectangle(int width, String color, int height) {
@@ -74,9 +89,13 @@ class  Rectangle extends Shape implements MathShape{
     public double getSquare(){
         return 0.5 * getWidth() * this.height;
     }
+
+    public void info(){
+        System.out.println();
+    }
 }
 
-class Triangle extends Shape {
+class Triangle extends Shape implements ShapeInterface{
     private int height;
 
     public Triangle(int width, String color, int height) {
@@ -87,5 +106,9 @@ class Triangle extends Shape {
     @Override
     void draw() {
         System.out.println("Рисование тругольника");
+    }
+
+    public void info(){
+        System.out.println();
     }
 }
